@@ -72,7 +72,7 @@ def create_quad_var_plots(n, m, T):
         x=t[:, 0],
         y=t[:, 0],
         mode='lines',
-        name='Theoretical: [B]_t = t',
+        name='Theoretical',
         line=dict(color='red', width=3, dash='dash'),
         showlegend=True
     ))
@@ -88,36 +88,17 @@ def create_quad_var_plots(n, m, T):
 
 # Top control area
 with st.container():
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        time_horizon = st.slider(
-            "Time horizon:",
-            min_value=0.1,
-            max_value=1.0,
-            value=0.5,
-            step=0.1
-        )
-    
+    [col1,col2, col3] = st.columns(3)
+     
     with col2:
         n = st.selectbox(
-            "Number of subdivisions:",
+            "Number of subdivisions of time interval:",
             options=[10, 100, 1000, 10000, 100000],
             index=1
         )
     
-    with col3:
-        m = st.slider(
-            "Number of paths:",
-            min_value=1,
-            max_value=10,
-            value=5,
-            step=1
-        )
-    
-
 # Generate and display plots
-fig1, fig2 = create_quad_var_plots(n, m, time_horizon)
+fig1, fig2 = create_quad_var_plots(n, 5, 1)
 
 col1, col2 = st.columns(2)
 
