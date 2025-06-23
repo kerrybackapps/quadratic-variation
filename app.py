@@ -160,13 +160,13 @@ def create_quad_var_plots(n, m, T):
         width=400,
         annotations=[
             dict(
-                x=0.98,
-                y=0.02,
+                x=0.02,
+                y=0.98,
                 xref="paper",
                 yref="paper",
-                text="— — — Theoretical: [B]<sub>t</sub> = t",
+                text="- - - - Theoretical",
                 showarrow=False,
-                font=dict(size=12),
+                font=dict(size=16, weight="bold"),
                 bgcolor="rgba(255,255,255,0.8)",
                 bordercolor="rgba(0,0,0,0.2)",
                 borderwidth=1
