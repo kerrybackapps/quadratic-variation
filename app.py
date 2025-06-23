@@ -9,9 +9,21 @@ st.set_page_config(
     layout="wide"
 )
 
-# CSS for responsive iframe scaling
+# CSS for responsive iframe scaling and Bootstrap-like theme
 st.markdown("""
 <style>
+/* Bootstrap-like color scheme */
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --info-color: #0dcaf0;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+}
+
 /* Make the entire app responsive */
 .main .block-container {
     max-width: 100% !important;
@@ -23,11 +35,52 @@ st.markdown("""
 .stApp {
     transform-origin: top left;
     width: 100%;
+    background-color: #ffffff;
+    color: #212529;
 }
 
 /* Ensure plots scale properly */
 .js-plotly-plot {
     width: 100% !important;
+}
+
+/* Sidebar styling */
+.css-1d391kg {
+    background-color: var(--light-color);
+}
+
+/* Button styling */
+.stButton > button {
+    background-color: var(--primary-color);
+    color: white;
+    border: 1px solid var(--primary-color);
+    border-radius: 0.375rem;
+}
+
+.stButton > button:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* Input styling */
+.stTextInput > div > div > input,
+.stSelectbox > div > div > select,
+.stSlider > div > div > div > div {
+    border-color: #ced4da;
+    border-radius: 0.375rem;
+}
+
+/* Metric styling */
+.metric-container {
+    background-color: var(--light-color);
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    padding: 1rem;
+}
+
+/* Slider styling */
+.stSlider > div > div > div > div {
+    background-color: var(--primary-color);
 }
 </style>
 """, unsafe_allow_html=True)
@@ -74,7 +127,8 @@ def create_quad_var_plots(n, m, T):
         xaxis_title="Time",
         yaxis_title="Brownian Motion",
         template="plotly_white",
-        height=400
+        height=350,
+        width=400
     )
 
     # Quadratic variation plot
@@ -102,7 +156,8 @@ def create_quad_var_plots(n, m, T):
         xaxis_title="Time",
         yaxis_title="Quadratic Variation",
         template="plotly_white",
-        height=400,
+        height=350,
+        width=400,
         annotations=[
             dict(
                 x=0.98,
