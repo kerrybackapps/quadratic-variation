@@ -86,29 +86,48 @@ def create_quad_var_plots(n, m, T):
 
     return fig1, fig2
 
-# Sidebar controls
-with st.sidebar:
-    time_horizon = st.slider(
-        "Time horizon:",
-        min_value=0.1,
-        max_value=1.0,
-        value=0.5,
-        step=0.1
-    )
-
-    n = st.selectbox(
-        "Number of subdivisions:",
-        options=[10, 100, 1000, 10000, 100000],
-        index=1
-    )
-
-    m = st.slider(
-        "Number of paths:",
-        min_value=1,
-        max_value=10,
-        value=5,
-        step=1
-    )
+# Top control area with shaded background
+with st.container():
+    st.markdown("""
+        <style>
+        .control-area {
+            background-color: #f0f2f6;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        </style>
+        <div class="control-area">
+        """, unsafe_allow_html=True)
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        time_horizon = st.slider(
+            "Time horizon:",
+            min_value=0.1,
+            max_value=1.0,
+            value=0.5,
+            step=0.1
+        )
+    
+    with col2:
+        n = st.selectbox(
+            "Number of subdivisions:",
+            options=[10, 100, 1000, 10000, 100000],
+            index=1
+        )
+    
+    with col3:
+        m = st.slider(
+            "Number of paths:",
+            min_value=1,
+            max_value=10,
+            value=5,
+            step=1
+        )
+    
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # Generate and display plots
 fig1, fig2 = create_quad_var_plots(n, m, time_horizon)
