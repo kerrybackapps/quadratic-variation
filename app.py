@@ -44,12 +44,12 @@ def create_quad_var_plots(n, m, T):
             y=Bt[:, i], 
             mode='lines',
             name=f'Path {i+1}' if m <= 5 else None,
-            showlegend=(m <= 5)
+            showlegend=False
         ))
     
     fig1.update_layout(
-        xaxis_title="Time (t)",
-        yaxis_title="Brownian Motion B(t)",
+        xaxis_title="Time",
+        yaxis_title="Brownian Motion",
         template="plotly_white",
         height=400
     )
@@ -63,8 +63,7 @@ def create_quad_var_plots(n, m, T):
             x=t[:, 0], 
             y=QV[:, i], 
             mode='lines',
-            name=f'Path {i+1}' if m <= 5 else None,
-            showlegend=(m <= 5)
+            showlegend=False
         ))
     
     # Add theoretical line [B]_t = t
@@ -72,16 +71,29 @@ def create_quad_var_plots(n, m, T):
         x=t[:, 0],
         y=t[:, 0],
         mode='lines',
-        name='Theoretical',
-        line=dict(color='red', width=3, dash='dash'),
-        showlegend=True
+        line=dict(color='black', width=3, dash='dash'),
+        showlegend=False
     ))
     
     fig2.update_layout(
         xaxis_title="Time",
         yaxis_title="Quadratic Variation",
         template="plotly_white",
-        height=400
+        height=400,
+        annotations=[
+            dict(
+                x=0.98,
+                y=0.02,
+                xref="paper",
+                yref="paper",
+                text="— — — Theoretical: [B]<sub>t</sub> = t",
+                showarrow=False,
+                font=dict(size=12),
+                bgcolor="rgba(255,255,255,0.8)",
+                bordercolor="rgba(0,0,0,0.2)",
+                borderwidth=1
+            )
+        ]
     )
 
     return fig1, fig2
@@ -91,10 +103,12 @@ with st.container():
     [col1,col2, col3] = st.columns(3)
      
     with col2:
-        n = st.selectbox(
+        n = st.slider(
             "Number of subdivisions of time interval:",
-            options=[10, 100, 1000, 10000, 100000],
-            index=1
+            min_value=2,
+            max_value=10000,
+            value=10,
+            step=1
         )
     
 # Generate and display plots
