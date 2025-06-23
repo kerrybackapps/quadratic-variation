@@ -161,7 +161,7 @@ def create_quad_var_plots(n, m, T):
         annotations=[
             dict(
                 x=0.02,
-                y=0.98,
+                y=0.8,
                 xref="paper",
                 yref="paper",
                 text="- - - - Theoretical",
