@@ -78,28 +78,16 @@ def create_quad_var_plots(n, m, T):
     ))
     
     fig2.update_layout(
-        xaxis_title="Time (t)",
-        yaxis_title="Quadratic Variation [B]_t",
+        xaxis_title="Time",
+        yaxis_title="Quadratic Variation",
         template="plotly_white",
         height=400
     )
 
     return fig1, fig2
 
-# Top control area with shaded background
+# Top control area
 with st.container():
-    st.markdown("""
-        <style>
-        .control-area {
-            background-color: #f0f2f6;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        </style>
-        <div class="control-area">
-        """, unsafe_allow_html=True)
-    
     col1, col2, col3 = st.columns(3)
     
     with col1:
@@ -127,7 +115,6 @@ with st.container():
             step=1
         )
     
-    st.markdown("</div>", unsafe_allow_html=True)
 
 # Generate and display plots
 fig1, fig2 = create_quad_var_plots(n, m, time_horizon)
