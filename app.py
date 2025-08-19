@@ -9,6 +9,22 @@ st.set_page_config(
     layout="wide"
 )
 
+# Enable iframe embedding
+st.markdown("""
+<script>
+// Allow iframe embedding
+if (window.location !== window.parent.location) {
+    document.domain = document.domain;
+}
+// Remove X-Frame-Options restrictions
+window.addEventListener('load', function() {
+    if (window.parent !== window) {
+        console.log('Running in iframe - embedding allowed');
+    }
+});
+</script>
+""", unsafe_allow_html=True)
+
 # CSS for responsive iframe scaling and Bootstrap-like theme
 st.markdown("""
 <style>
